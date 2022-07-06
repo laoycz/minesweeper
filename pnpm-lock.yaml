@@ -3,7 +3,8 @@ lockfileVersion: 5.3
 specifiers:
   '@rushstack/eslint-patch': ^1.1.0
   '@types/jsdom': ^16.2.14
-  '@types/node': ^16.11.41
+  '@types/lodash': ^4.14.182
+  '@types/node': ^16.11.42
   '@vitejs/plugin-vue': ^2.3.3
   '@vue/eslint-config-prettier': ^7.0.0
   '@vue/eslint-config-typescript': ^11.0.0
@@ -12,6 +13,7 @@ specifiers:
   eslint: ^8.5.0
   eslint-plugin-vue: ^9.0.0
   jsdom: ^20.0.0
+  lodash: ^4.17.21
   npm-run-all: ^4.1.5
   prettier: ^2.5.1
   typescript: ~4.7.4
@@ -21,6 +23,8 @@ specifiers:
   vue-tsc: ^0.38.1
 
 dependencies:
+  '@types/lodash': 4.14.182
+  lodash: 4.17.21
   vue: 3.2.37
 
 devDependencies:
@@ -132,6 +136,10 @@ packages:
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
+
+  /@types/lodash/4.14.182:
+    resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
+    dev: false
 
   /@types/node/16.11.42:
     resolution: {integrity: sha512-iwLrPOopPy6V3E+1yHTpJea3bdsNso0b0utLOJJwaa/PLzqBt3GZl3stMcakc/gr89SfcNk2ki3z7Gvue9hYGQ==}
@@ -1691,7 +1699,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loupe/2.3.4:
     resolution: {integrity: sha512-OvKfgCC2Ndby6aSTREl5aCCPTNIzlDfQZvZxNUrBrihDhL3xcrYegTblhmEiCrg2kKQz4XsFIaemE5BF4ybSaQ==}
