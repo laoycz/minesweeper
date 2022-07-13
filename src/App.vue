@@ -1,81 +1,60 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="zone">
+    <div v-for="(row, i) in zone" :key="i" style="display: contents">
+      <div
+        v-for="(cell, j) in row"
+        :key="j"
+        class="cell"
+        :style="getCellStyle(cell)"
+      ></div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
-<style>
-@import './assets/base.css';
+<script lang="ts">
+import type { StyleValue } from "vue";
+import Matrix from "./Matrix";
+import { distribute, fill } from "./Zone";
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+const matrix = new Matrix(distribute(99, 30, 16));
+const zone = fill(matrix);
 
-  font-weight: normal;
+export default {
+  data() {
+    return { zone: zone };
+  },
+  methods: {
+    getCellStyle(value: number): StyleValue {
+      if (value == -1) return { backgroundPosition: "-96px -59px" };
+
+      return {
+        backgroundPositionX: `-${value * 24}px`,
+        backgroundPositionY: "-35px",
+      };
+
+      // if (value == 0) return { backgroundPosition: "0 -35px" };
+      // if (value == 1) return { backgroundPosition: "-24px -35px" };
+      // if (value == 2) return { backgroundPosition: "-48px -35px" };
+      // if (value == 3) return { backgroundPosition: "-72px -35px" };
+      // if (value == 4) return { backgroundPosition: "-96px -35px" };
+      // if (value == 5) return { backgroundPosition: "-120px -35px" };
+      // if (value == 6) return { backgroundPosition: "-144px -35px" };
+      // if (value == 7) return { backgroundPosition: "-168px -35px" };
+      // if (value == 8) return { backgroundPosition: "-192px -35px" };
+      // return {};    //同上
+    },
+  },
+};
+</script>
+
+<style scoped>
+.zone {
+  display: grid;
+  grid-template-columns: repeat(30, 24px);
+  grid-auto-rows: 24px;
+  justify-content: start;
 }
-
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.cell {
+  background-image: url(assets/sprite150.gif);
 }
 </style>

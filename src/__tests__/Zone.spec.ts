@@ -1,12 +1,19 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from "vitest";
 
-import { distribute } from '../Zone'
+import { distribute, fill } from "../Zone";
 
-describe('neighbors', () => {
-    it('ok', () => {
+import Matrix from "../Matrix";
 
-        expect(distribute(1, 3, 1)[0].filter(x => x == -1).length).toEqual(1)
-        expect(distribute(1, 3, 1)[0].filter(x => x == 0).length).toEqual(2)
-    }
-    )
-})
+describe("distribute", () => {
+  it("ok", () => {
+    expect(distribute(1, 3, 1)[0].filter((x) => x == -1).length).toEqual(1);
+    expect(distribute(1, 3, 1)[0].filter((x) => x == 0).length).toEqual(2);
+  });
+});
+
+describe("fill", () => {
+  it("ok", () => {
+    const matrix = new Matrix([[-1, 0, 0]]);
+    expect(fill(matrix)).toEqual([[-1, 1, 0]]);
+  });
+});
