@@ -14,6 +14,6 @@ describe("distribute", () => {
 describe("fill", () => {
   it("ok", () => {
     const matrix = new Matrix([[-1, 0, 0]]);
-    expect(fill(matrix)).toEqual([[-1, 1, 0]]);
+    expect(fill(matrix).matrix).toEqual([[-1, 1, 0]]);
   });
 });

@@ -1,11 +1,11 @@
 import { max, values } from "lodash";
 
-class Matrix {
-  public matrix: number[][];
+class Matrix<T> {
+  public matrix: T[][];
   width: number;
   height: number;
 
-  constructor(matrix: number[][]) {
+  constructor(matrix: T[][]) {
     this.matrix = matrix;
     this.width = matrix[0].length;
     this.height = matrix.length;
@@ -15,9 +15,15 @@ class Matrix {
     return this.matrix[y][x];
   } // 从坐标获取值
 
-  map(func: (value: number, i: [number, number]) => number) {
-    return this.matrix.map((row, y) =>
-      row.map((cell, x) => func(cell, [x, y]))
+  // map<T1>(func: (value: T, i: [number, number]) => T1) {
+  //   return this.matrix.map((row, y) =>
+  //     row.map((cell, x) => func(cell, [x, y]))
+  //   );
+  // }
+
+  map<T1>(func: (value: T, i: [number, number]) => T1) {
+    return new Matrix(
+      this.matrix.map((row, y) => row.map((cell, x) => func(cell, [x, y])))
     );
   }
 

@@ -14,17 +14,19 @@
 <script lang="ts">
 import type { StyleValue } from "vue";
 import Matrix from "./Matrix";
-import { distribute, fill } from "./Zone";
+import { distribute, fill, fillStatus } from "./Zone";
 
 const matrix = new Matrix(distribute(99, 30, 16));
-const zone = fill(matrix);
+const zone = fillStatus(fill(matrix));
 
 export default {
   data() {
-    return { zone: zone };
+    return { zone: zone.matrix };
   },
   methods: {
-    getCellStyle(value: number): StyleValue {
+    getCellStyle([value, status]: [number, boolean]): StyleValue {
+      if (status == false) return { backgroundPosition: "0 -59px" };
+
       if (value == -1) return { backgroundPosition: "-96px -59px" };
 
       return {

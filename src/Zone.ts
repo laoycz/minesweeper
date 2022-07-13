@@ -12,7 +12,7 @@ export function distribute(minesCount: number, width: number, height: number) {
 
 // console.log(Array(99).fill(-1))
 // console.log(Array(30 * 16 - 99).fill(0))
-export function fill(matrix: Matrix) {
+export function fill(matrix: Matrix<number>) {
   return matrix.map((value, i) => {
     if (value == -1) return -1;
     else
@@ -20,6 +20,12 @@ export function fill(matrix: Matrix) {
         .neighbors(i)
         .map((a) => matrix.get(a))
         .filter((a) => a == -1).length;
+  });
+}
+
+export function fillStatus(matrix: Matrix<number>) {
+  return matrix.map<[number, boolean]>((value) => {
+    return [value, false];
   });
 }
 
