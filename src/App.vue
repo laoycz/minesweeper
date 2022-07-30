@@ -66,8 +66,8 @@ export default defineComponent({
     },
 
     newGame() {
-      const game = new Game();
-      return { zone: game.zone.matrix, game };
+      this.game = new Game();
+      this.zone = this.game.zone.matrix;
     },
 
     open([x, y]: [number, number]) {
