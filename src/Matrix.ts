@@ -15,6 +15,10 @@ class Matrix<T> {
     return this.matrix[y][x];
   } // 从坐标获取值
 
+  set([x, y]: [number, number], value: T) {
+    this.matrix[y][x] = value;
+  } //用值替换坐标位置
+
   // map<T1>(func: (value: T, i: [number, number]) => T1) {
   //   return this.matrix.map((row, y) =>
   //     row.map((cell, x) => func(cell, [x, y]))

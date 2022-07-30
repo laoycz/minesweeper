@@ -22,10 +22,10 @@ export function fill(matrix: Matrix<number>) {
         .filter((a) => a == -1).length;
   });
 }
-
+export type status = "close" | "open" | "flag";
 export function fillStatus(matrix: Matrix<number>) {
-  return matrix.map<[number, boolean]>((value) => {
-    return [value, false];
+  return matrix.map<[number, status]>((value) => {
+    return [value, "close"];
   });
 }
 
