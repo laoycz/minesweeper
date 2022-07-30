@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @click="newGame()" class="face"></div>
+    <div @click="newGame()" class="face" :class="game.status"></div>
     <div @contextmenu.prevent class="zone">
       <div v-for="(row, i) in zone" :key="i" style="display: contents">
         <div
@@ -97,10 +97,20 @@ export default defineComponent({
   background-image: url(./assets/sprite150.gif);
   width: 39px;
   height: 39px;
-  background-position: 0 -83px;
 }
 
 .face:active {
   background-position: -39px -83px;
+}
+
+.play {
+  background-position: 0 -83px;
+}
+
+.win {
+  background-position: -156px -83px;
+}
+.lose {
+  background-position: -117px -83px;
 }
 </style>
