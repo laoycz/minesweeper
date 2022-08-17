@@ -1,44 +1,84 @@
 <template>
   <div>
-    <div style="display: flex">
+    <div
+      style="
+        display: grid;
+        grid-template-columns: 15px auto 15px;
+        grid-template-rows: 15px 48px 15px auto 15px;
+        justify-content: center;
+      "
+    >
+      <div class="bg" style="background-position: 0 -122px"></div>
       <div style="display: flex">
-        <div class="bg digit" style="background-position: 0 0"></div>
-        <div
-          class="bg digit"
-          :style="`background-position: ${minesCount[0] * -19.5}px 0`"
-        ></div>
-        <div
-          class="bg digit"
-          :style="`background-position: ${minesCount[1] * -19.5}px 0`"
-        ></div>
+        <div v-for="n in 30" class="bg bordertb"></div>
       </div>
-      <div @click="newGame()" class="face" :class="game.status"></div>
+      <div class="bg" style="background-position: -15px -122px"></div>
+      <div class="bg" style="background-position: -201px -59px"></div>
+      <div
+        style="
+          background-color: silver;
+          padding: 0 9px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <div style="display: flex">
+          <div class="bg digit" style="background-position: 0 0"></div>
+          <div
+            class="bg digit"
+            :style="`background-position: ${minesCount[0] * -19.5}px 0`"
+          ></div>
+          <div
+            class="bg digit"
+            :style="`background-position: ${minesCount[1] * -19.5}px 0`"
+          ></div>
+        </div>
+        <div @click="newGame()" class="face" :class="game.status"></div>
+        <div style="display: flex">
+          <div
+            class="bg digit"
+            :style="`background-position:${splitedTime[0] * -19.5}px 0`"
+          ></div>
+          <div
+            class="bg digit"
+            :style="`background-position:${splitedTime[1] * -19.5}px 0`"
+          ></div>
+          <div
+            class="bg digit"
+            :style="`background-position:${splitedTime[2] * -19.5}px 0`"
+          ></div>
+        </div>
+      </div>
+      <div class="bg" style="background-position: -201px -59px"></div>
+      <div style="background-position: -84px -122px" class="bg"></div>
       <div style="display: flex">
-        <div
-          class="bg digit"
-          :style="`background-position:${splitedTime[0] * -19.5}px 0`"
-        ></div>
-        <div
-          class="bg digit"
-          :style="`background-position:${splitedTime[1] * -19.5}px 0`"
-        ></div>
-        <div
-          class="bg digit"
-          :style="`background-position:${splitedTime[2] * -19.5}px 0`"
-        ></div>
+        <div v-for="n in 30" class="bordertb bg"></div>
       </div>
-    </div>
-    <div @contextmenu.prevent class="zone">
-      <div v-for="(row, i) in zone" :key="i" style="display: contents">
-        <div
-          v-for="(cell, j) in row"
-          :key="j"
-          class="bg"
-          :style="getCellStyle(cell)"
-          @click="open([j, i])"
-          @click.right="flag([j, i])"
-        ></div>
+      <div class="bg" style="background-position: -99px -122px"></div>
+      <div>
+        <div v-for="n in 16" class="bg borderlr"></div>
       </div>
+      <div @contextmenu.prevent class="zone">
+        <div v-for="(row, i) in zone" :key="i" style="display: contents">
+          <div
+            v-for="(cell, j) in row"
+            :key="j"
+            class="bg"
+            :style="getCellStyle(cell)"
+            @click="open([j, i])"
+            @click.right="flag([j, i])"
+          ></div>
+        </div>
+      </div>
+      <div>
+        <div v-for="n in 16" class="borderlr bg"></div>
+      </div>
+      <div class="bg" style="background-position: -30px -122px"></div>
+      <div style="display: flex">
+        <div v-for="n in 30" class="bordertb bg"></div>
+      </div>
+      <div class="bg" style="background-position: -45px -122px"></div>
     </div>
   </div>
 </template>
@@ -50,7 +90,6 @@ import Matrix from "./Matrix";
 import { distribute, fill, fillStatus } from "./Zone";
 import type { status } from "./Zone";
 import Game from "./Game";
-import { count } from "console";
 
 // const matrix = new Matrix(distribute(99, 30, 16));
 // const zone = fillStatus(fill(matrix));
@@ -168,5 +207,17 @@ export default defineComponent({
 }
 .lose {
   background-position: -117px -83px;
+}
+
+.bordertb {
+  width: 24px;
+  height: 15px;
+  background-position: -60px -122px;
+}
+
+.borderlr {
+  width: 15px;
+  height: 24px;
+  background-position: -201px -59px;
 }
 </style>
